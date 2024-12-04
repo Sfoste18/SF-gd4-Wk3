@@ -3,16 +3,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float movementSpeed = 10.0f;
-    public float horizontalInput;
     public float xRange = 20;
-    public float forwardInput;
     public float zRange = 20;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public GameObject projectile;
+
+   
 
     // Update is called once per frame
     void Update()
@@ -57,5 +53,17 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, zRange);
         }
+
+        //Spawning projectiles 
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Instantiate(projectile, transform.position + new Vector3(0, 0, 1), Quaternion.identity);
+        }
+
+
+
+
+
+
     }
 }
