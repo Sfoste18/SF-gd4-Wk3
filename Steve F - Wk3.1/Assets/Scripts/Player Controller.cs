@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject projectile;
 
+    //public int score;
+
    
 
     // Update is called once per frame
@@ -24,12 +26,20 @@ public class PlayerController : MonoBehaviour
         //transform.Translate(Vector3.forward * forwardInput * Time.deltaTime * movementSpeed);
 
 
-        //Method 2
+        //Method 2 - GetAxisRaw updates with no smoothing filtering 
         float horizontalMove = Input.GetAxisRaw("Horizontal");
         float verticalMove = Input.GetAxisRaw("Vertical");
 
         Vector3 moveDir = new Vector3(horizontalMove, 0, verticalMove).normalized;
+
+        //Character relative to local space
         transform.Translate(moveDir * movementSpeed * Time.deltaTime);
+
+        //Transforms character rotation to face turn direction
+        //transform.rotation = Quaternion.LookRotation(moveDir);
+
+        //Space.World is Character relative to World space(used with LookRotation Line39)
+        //transform.Translate(moveDir * movementSpeed * Time.deltaTime, Space.World);
 
 
 
@@ -57,11 +67,16 @@ public class PlayerController : MonoBehaviour
         //Spawning projectiles 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Instantiate(projectile, transform.position + new Vector3(0, 0, 1), Quaternion.identity);
+            //Instantiate(projectile, transform.position + new Vector3(0, 0, 1), Quaternion.identity);
+
+            //Destroys projectiles after 5 seconds if no collision without setting up boundries
+            Destroy(Instantiate(projectile, transform.position + transform.forward, transform.rotation),5);
+
         }
 
 
-
+        //Update the score UI
+        //scoreText.
 
 
 
