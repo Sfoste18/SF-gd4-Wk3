@@ -24,6 +24,7 @@ public class SpawnManager : MonoBehaviour
         {
             Instantiate(animals,transform.position + new Vector3(0,0,1), Quaternion.Euler(0, Random.Range(0, 360), 0));
 
+
             //int randomIndex = Random.Range(0, animals.Length);
             //Vector3 randomSpawnPosition = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 0, Random.Range(-spawnRangeZ, spawnRangeZ));
             //Instantiate(animals[randomIndex], randomSpawnPosition, Quaternion.Euler(0, Random.Range(0, 360), 0));
